@@ -1,6 +1,12 @@
 module github.com/IrineSistiana/mosdns/v5
 
+<<<<<<< HEAD
 go 1.23
+=======
+go 1.22.0
+
+toolchain go1.23.0
+>>>>>>> origin/main
 
 require (
 	github.com/IrineSistiana/go-bytes-pool v0.0.0-20230918115058-c72bd9761c57
@@ -19,7 +25,11 @@ require (
 	github.com/vishvananda/netlink v1.2.1-beta.2.0.20221107222636-d3c0a2caa559
 	go.uber.org/zap v1.27.0
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba
+<<<<<<< HEAD
 	golang.org/x/exp v0.0.0-20241204233417-43b7b7cde48d
+=======
+	golang.org/x/exp v0.0.0-20241210194714-1829a127f884
+>>>>>>> origin/main
 	golang.org/x/net v0.32.0
 	golang.org/x/sync v0.10.0
 	golang.org/x/sys v0.28.0
@@ -36,11 +46,15 @@ require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
+<<<<<<< HEAD
 	github.com/google/pprof v0.0.0-20241203143554-1e3fdc7de467 // indirect
+=======
+	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
+>>>>>>> origin/main
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/native v1.1.0 // indirect
-	github.com/magiconair/properties v1.8.7 // indirect
+	github.com/magiconair/properties v1.8.9 // indirect
 	github.com/mdlayher/netlink v1.7.2 // indirect
 	github.com/mdlayher/socket v0.5.1 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
