@@ -6,8 +6,8 @@ toolchain go1.23.0
 
 require (
 	github.com/IrineSistiana/go-bytes-pool v0.0.0-20230918115058-c72bd9761c57
-	github.com/go-chi/chi/v5 v5.2.0
-	github.com/google/nftables v0.2.0
+	github.com/go-chi/chi/v5 v5.2.1
+	github.com/google/nftables v0.3.0
 	github.com/kardianos/service v1.2.2
 	github.com/klauspost/compress v1.17.11
 	github.com/miekg/dns v1.1.63
@@ -18,15 +18,15 @@ require (
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
-	github.com/vishvananda/netlink v1.2.1-beta.2.0.20221107222636-d3c0a2caa559
+	github.com/vishvananda/netlink v1.3.0
 	go.uber.org/zap v1.27.0
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba
-	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8
+	golang.org/x/exp v0.0.0-20250128182459-e0ece0dbea4c
 	golang.org/x/net v0.34.0
-	golang.org/x/sync v0.10.0
-	golang.org/x/sys v0.29.0
-	golang.org/x/time v0.9.0
-	google.golang.org/protobuf v1.36.4
+	golang.org/x/sync v0.11.0
+	golang.org/x/sys v0.30.0
+	golang.org/x/time v0.10.0
+	google.golang.org/protobuf v1.36.5
 )
 
 replace github.com/nadoo/ipset v0.5.0 => github.com/IrineSistiana/ipset v0.5.1-0.20220703061533-6e0fc3b04c0a
@@ -38,12 +38,11 @@ require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
-	github.com/google/pprof v0.0.0-20250121033306-997b0b79cac0 // indirect
+	github.com/google/pprof v0.0.0-20250202011525-fc3143867406 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/josharian/native v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.9 // indirect
-	github.com/mdlayher/netlink v1.7.2 // indirect
+	github.com/mdlayher/netlink v1.7.3-0.20250113171957-fbb4dce95f42 // indirect
 	github.com/mdlayher/socket v0.5.1 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/onsi/ginkgo/v2 v2.22.2 // indirect
@@ -58,14 +57,14 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.12.0 // indirect
 	github.com/spf13/cast v1.7.1 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/vishvananda/netns v0.0.4 // indirect
 	go.uber.org/mock v0.5.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.32.0 // indirect
-	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/mod v0.23.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 	golang.org/x/tools v0.29.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
