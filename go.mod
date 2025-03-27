@@ -1,6 +1,8 @@
 module github.com/IrineSistiana/mosdns/v5
 
-go 1.23
+go 1.23.0
+
+toolchain go1.24.1
 
 require (
 	github.com/IrineSistiana/go-bytes-pool v0.0.0-20230918115058-c72bd9761c57
