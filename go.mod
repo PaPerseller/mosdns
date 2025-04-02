@@ -65,4 +65,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/spf13/viper => github.com/IrineSistiana/viper v1.19.0
+replace github.com/spf13/viper => github.com/spf13/viper v1.19.0
