@@ -64,3 +64,5 @@ require (
 	golang.org/x/tools v0.31.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+replace github.com/spf13/viper => github.com/IrineSistiana/viper v1.19.0
