@@ -265,12 +265,6 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 		}
 	}
 
-	closeIfFuncErr := func(c io.Closer) {
-		if err != nil {
-			c.Close()
-		}
-	}
-
 	switch addrURL.Scheme {
 	case "", "udp":
 		const defaultPort = 53
@@ -401,12 +395,10 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 		return transport.NewReuseConnTransport(transport.ReuseConnOpts{DialContext: dialNetConn}), nil
 	case "https":
 		const defaultPort = 443
-
 		idleConnTimeout := time.Second * 30
 		if opt.IdleTimeout > 0 {
 			idleConnTimeout = opt.IdleTimeout
 		}
-
 		var t http.RoundTripper
 		var addonCloser io.Closer
 		if opt.EnableHTTP3 {
@@ -414,7 +406,6 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 			if err != nil {
 				return nil, fmt.Errorf("failed to init udp addr bootstrap, %w", err)
 			}
-
 			lc := net.ListenConfig{Control: getSocketControlFunc(socketOpts{so_mark: opt.SoMark, bind_to_device: opt.BindToDevice})}
 			conn, err := lc.ListenPacket(context.Background(), "udp", "")
 			if err != nil {
@@ -425,18 +416,17 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 			}
 			quicConfig := newDefaultClientQuicConfig()
 			quicConfig.MaxIdleTimeout = idleConnTimeout
-
-			defer closeIfFuncErr(quicTransport)
 			addonCloser = quicTransport
-			t = &http3.RoundTripper{
+
+			t = &http3.Transport{
 				TLSClientConfig: opt.TLSConfig,
 				QUICConfig:      quicConfig,
-				Dial: func(ctx context.Context, _ string, tlsCfg *tls.Config, cfg *quic.Config) (quic.Connection, error) {
+				Dial: func(ctx context.Context, _ string, tlsCfg *tls.Config, cfg *quic.Config) (*quic.Conn, error) {
 					ua, err := udpBootstrap(ctx)
 					if err != nil {
 						return nil, err
 					}
-					return quicTransport.Dial(ctx, ua, tlsCfg, cfg)
+					return quicTransport.DialEarly(ctx, ua, tlsCfg, cfg)
 				},
 				MaxResponseHeaderBytes: 4 * 1024,
 			}
@@ -446,7 +436,7 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 				return nil, fmt.Errorf("failed to init tcp dialer, %w", err)
 			}
 			t1 := &http.Transport{
-				DialContext: func(ctx context.Context, network, _ string) (net.Conn, error) { // overwrite server addr
+				DialContext: func(ctx context.Context, network, _ string) (net.Conn, error) {
 					c, err := tcpDialer(ctx)
 					c = wrapConn(c, opt.EventObserver)
 					return c, err
@@ -455,7 +445,6 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 				TLSHandshakeTimeout: tlsHandshakeTimeout,
 				IdleConnTimeout:     idleConnTimeout,
 			}
-
 			t2, err := http2.ConfigureTransports(t1)
 			if err != nil {
 				return nil, fmt.Errorf("failed to upgrade http2 support, %w", err)
@@ -466,12 +455,10 @@ func NewUpstream(addr string, opt Opt) (_ Upstream, err error) {
 			t2.PingTimeout = time.Second * 5
 			t = t1
 		}
-
 		u, err := doh.NewUpstream(addrURL.String(), t, opt.Logger)
 		if err != nil {
 			return nil, fmt.Errorf("failed to create doh upstream, %w", err)
 		}
-
 		return &dohWithClose{
 			u:      u,
 			closer: addonCloser,
