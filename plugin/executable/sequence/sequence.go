@@ -71,6 +71,10 @@ func NewSequence(bq BQ, ra []RuleArgs) (*Sequence, error) {
 	return s, nil
 }
 
+func (s *Sequence) Chain() []*ChainNode {
+	return s.chain
+}
+
 func (s *Sequence) Exec(ctx context.Context, qCtx *query_context.Context) error {
 	walker := NewChainWalker(s.chain, nil)
 	return walker.ExecNext(ctx, qCtx)

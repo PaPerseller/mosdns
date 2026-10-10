@@ -23,6 +23,8 @@ package plugin
 import (
 	// data provider
 	_ "github.com/IrineSistiana/mosdns/v5/plugin/data_provider/domain_set"
+	_ "github.com/IrineSistiana/mosdns/v5/plugin/data_provider/dat_domain_set"
+	_ "github.com/IrineSistiana/mosdns/v5/plugin/executable/match_cache"
 	_ "github.com/IrineSistiana/mosdns/v5/plugin/data_provider/ip_set"
 
 	// matcher

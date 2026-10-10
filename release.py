@@ -60,6 +60,7 @@ def go_build():
         VERSION = subprocess.check_output('git describe --tags --long --always', shell=True).decode().rstrip()
     except subprocess.CalledProcessError as e:
         logger.error(f'get git tag failed: {e.args}')
+    VERSION += '-turbo'
 
     try:
         subprocess.check_call('go run ../ config gen config.yaml', shell=True, env=os.environ)
